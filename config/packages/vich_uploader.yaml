@@ -1,0 +1,13 @@
+vich_uploader:
+    db_driver: orm
+    
+    mappings:
+        client_upload:
+            uri_prefix:         '%app.path.client_upload%'
+            upload_destination: '%kernel.root_dir%/../public%app.path.client_upload%'
+        marque_upload:
+            uri_prefix:         '%app.path.marque_upload%'
+            upload_destination: '%kernel.root_dir%/../public%app.path.marque_upload%'
+        voiture_upload:
+            uri_prefix:         '%app.path.voiture_upload%'
+            upload_destination: '%kernel.root_dir%/../public%app.path.voiture_upload%'

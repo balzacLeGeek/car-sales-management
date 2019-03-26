@@ -1,0 +1,96 @@
+{% extends '@EasyAdmin/default/layout.html.twig' %}
+{% block main %}
+<div>
+    <div>
+        <section>
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3 class="title">Recherche avancé</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <form class="recherche_form">
+                        {{form_start(form)}}
+                        <div class="form-row">
+                            <div class="form-group col-md-12" data-provide="datepicker">
+                                <label for="client">Client</label>
+                                {{ form_row(form.client, {'label': ' ', 'attr': {'class': 'form-control', 'id':'client'}}) }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6" data-provide="datepicker">
+                                <label for="date_debut">Date de début</label>
+                                <input id="date_debut" class="datepicker form-control date_debut" data-date-format="mm/dd/yyyy"
+                                    placeholder="Début date">
+                            </div>
+                            <div class="form-group col-md-6" data-provide="datepicker">
+                                <label for="date_fin" for="">Date fin</label>
+                                <input id="date_fin" class="datepicker form-control date_fin" data-date-format="mm/dd/yyyy"
+                                    placeholder="Début fin">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-10">
+                            </div>
+                            <div class="form-group col-md-2">
+                                <input class="btn btn-primary" type="submit" value="Chercher">
+                            </div>
+                        </div>
+                        {{form_end(form)}}
+                    </form>
+                </div>
+            </div>
+        </section>
+        <section id="main" class="content tableContent">
+
+        </section>
+    </div>
+</div>
+<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('assets/js/datepicker.js') }}"></script>
+<script>
+    $(function () {
+        $('.datepicker').datepicker({
+            format: 'yyyy/mm/dd',
+            startDate: '-3d'
+        });
+
+        $('#chiffre_affaire_client').prepend('<option value="" selected>Veuiller séléctionner un client</option>')
+        $('#chiffre_affaire_client').change(function () {
+            var client = $(this).val();
+            
+            $('.date_debut').change(function () {
+                var date_debut = $(this).datepicker("getDate");
+            });
+    
+            $('.date_fin').change(function () {
+                var date_fin = $(this).datepicker("getDate");
+            });
+
+            $('.recherche_form').submit(function (e) {
+                e.preventDefault();
+    
+                var data = {
+                    'date_debut': date_debut.value,
+                    'date_fin': date_fin.value,
+                    'id': client
+                };
+    
+                if (data.date_debut != '' && data.date_fin != '') {
+                    $.ajax({
+                        url: 'date/' + data.id,
+                        type: 'POST',
+                        data: data,
+                        success: function (Response) {
+                            $('.tableContent').html(Response);
+                        }
+                    });
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

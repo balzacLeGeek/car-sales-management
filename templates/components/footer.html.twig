@@ -1,0 +1,56 @@
+<footer id="footer" class="section">
+
+    <!-- container -->
+    <div class="container">
+
+        <!-- row -->
+        <div class="row">
+
+            <!-- footer logo -->
+            <div class="col-md-6">
+                <div class="footer-logo">
+                    <a class="logo" href="{{ path('index') }}">
+                        <img src="{{ asset('assets/imgs/logo.png') }}" alt="logo">
+                    </a>
+                </div>
+            </div>
+            <!-- footer logo -->
+
+            <!-- footer nav -->
+            <div class="col-md-6">
+                <ul class="footer-nav">
+                    {% include "components/navigation.html.twig" %}
+                </ul>
+            </div>
+            <!-- /footer nav -->
+
+        </div>
+        <!-- /row -->
+
+        <!-- row -->
+        <div id="bottom-footer" class="row">
+
+            <!-- social -->
+            <div class="col-md-4 col-md-push-8">
+                <ul class="footer-social">
+                    <li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#" class="youtube"><i class="fa fa-youtube"></i></a></li>
+                </ul>
+            </div>
+            <!-- /social -->
+
+            <!-- copyright -->
+            <div class="col-md-8 col-md-pull-4">
+                <div class="footer-copyright">
+                    <span>&copy; Copyright 2018. {{ 'footer.site_copyright'|trans }} | {{ 'footer.template_credit'|trans }} <a href="{{ 'footer.template_owner.url'|trans }}">{{ 'footer.template_owner.name'|trans }}</a></span>
+                </div>
+            </div>
+            <!-- /copyright -->
+
+        </div>
+        <!-- row -->
+
+    </div>
+    <!-- /container -->
+
+</footer>

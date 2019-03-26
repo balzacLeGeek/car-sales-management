@@ -1,0 +1,38 @@
+{% block fos_user_content %}
+<div class="card card-signin my-5">
+    <div class="card-body">
+        <h3 class="card-title text-center">
+            <img src="{{ asset('assets/imgs/logo.png') }}" alt=""><br>
+            {{ 'pages.login.title'|trans }}
+        </h3>
+        {% if error %}
+            <div class="alert alert-warning" role="alert">
+                <p class="mb-0">{{ error.messageKey|trans(error.messageData, 'security') }}</p>
+            </div>
+        {% endif %}
+        <form class="form-signin" action="{{ path("fos_user_security_check") }}" method="post">
+            {% if csrf_token %}
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+            {% endif %}
+            <div class="form-label-group">
+                <input type="text" id="username" class="form-control" name="_username" value="{{ last_username }}" required="required" placeholder="{{'pages.login.fields.username'|trans}}">
+                <label for="username">{{'pages.login.fields.username'|trans}}</label>
+            </div>
+
+            <div class="form-label-group">
+                <input type="password" id="password" class="form-control" name="_password" value="{{ last_username }}" required="required" placeholder="{{'pages.login.fields.password'|trans}}">
+                <label for="password">{{'pages.login.fields.password'|trans}}</label>
+            </div>
+
+            <div class="custom-control custom-checkbox mb-3">
+                <input type="checkbox" class="custom-control-input" id="remember_me" name="_remember_me" value="on">
+                <label class="custom-control-label" for="remember_me">{{'pages.login.fields.remember'|trans}}</label>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" id="_submit" name="_submit">{{'pages.login.fields.submit'|trans}}</button>
+            <hr class="my-4">
+            <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign in with Google</button>
+            <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

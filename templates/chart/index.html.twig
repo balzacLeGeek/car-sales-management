@@ -1,0 +1,16 @@
+{% extends "chart.html.twig" %}
+{% block scripts %}
+    <script type="text/javascript" src="{{ asset('assets/plugins/chart/fusioncharts.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/plugins/chart/themes/fusioncharts.theme.fusion.js') }}"></script>
+{% endblock %}
+{% block body %}
+    <div class="row" style="margin-top: 35px;">
+        <div class="col-md-1"></div>
+        <div class="col-md-11">
+            <center>
+                <div id="chart-container">Chart will render here!</div>
+            </center>
+            {{ client_id }}
+        </div>
+    </div>
+{% endblock %}

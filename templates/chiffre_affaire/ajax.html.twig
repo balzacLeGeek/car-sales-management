@@ -1,0 +1,40 @@
+{% if ventes is not empty %}
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th data-property-name="voiture" class="association">DATE</th>
+                    <th data-property-name="voiture" class="association">VOITURE</th>
+                    <th data-property-name="quantite" class="integer">CHIFFRE D'AFFAIRE</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for vente in ventes %}
+                <tr data-id="{{vente.id}}">
+                    <td data-label="Voiture" class=" association ">
+                        {{vente.date|date("m/d/Y")}}
+                    </td>
+                    <td data-label="Voiture" class=" association ">
+                        {{vente.voiture.voitureType}}
+                    </td>
+                    <td data-label="Voiture" class=" association ">
+                        {{(vente.voiture.prixUnitaire * vente.quantite)|number_format(0, '', ' ')}} Ar
+                    </td>
+                </tr>            
+                {% endfor %}
+                <tr>
+                    <td></td>
+                    <td style="font-size: 20px; font-weight: bold">TOTAL</td>
+                    <td style="font-size: 20px; font-weight: bold">
+                        {% set somme = 0 %}
+                        {% set sumPoidsChp = 0 %}
+                        {% for vente in ventes %}
+                            {% set somme = somme + (vente.voiture.prixUnitaire * vente.quantite) %}
+                        {% endfor %}
+                        {{somme|number_format(0, '', ' ')}} Ar
+                    </td>
+                </tr>      
+            </tbody>
+        </table>
+    </div>
+{% endif %}

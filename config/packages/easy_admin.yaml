@@ -1,0 +1,132 @@
+easy_admin:
+    site_name: 'JavaFX - Gestion de vente de voiture'
+    design:
+        brand_color: '#34495E'
+        color_scheme: 'light'
+        assets:
+            favicon: 'assets/imgs/tomcat-logo.svg.png'
+            css:
+                - 'assets/js/custom_backend.css'
+            js:
+                - 'assets/js/custom_backend.js'
+        menu:
+            - { entity: 'User', label: 'Utilisateurs', icon: 'user-circle' }
+            - { entity: 'Client', label: 'Clients', icon: 'address-book' }
+            - { entity: 'Marque', label: 'Marques', icon: 'train' }
+            - { entity: 'Voiture', label: 'Voitures', icon: 'car' }
+            - { entity: 'Vente', label: 'Ventes', icon: 'shopping-cart' }
+            - { route: 'chiffre_affaire_index', label: "Chiffre d'affaire", icon: 'shopping-cart' }
+            - { route: 'recherche', label: "Recherche avancé", icon: 'search' }
+    entities:
+        User:
+            class: App\Entity\User
+        Client:
+            class: App\Entity\Client
+            new:
+                title: 'Nouveau Client'
+                fields:
+                    - { property: 'nom', type: 'text', label: 'Nom' }
+                    - { property: 'prenom', type: 'text', label: 'Prenom' }
+                    - { property: 'email', type: 'email', label: 'Adresse email' }
+                    - { property: 'telephone', type: 'text', label: 'Téléphone' }
+                    - { property: 'adresse', type: 'text', label: 'Adresse' }
+                    - { property: 'photoProfilFile', type: 'vich_image', label: 'Photo de profil' }
+            edit:
+                title: "Edition d'un Client"
+                fields:
+                    - { property: 'nom', type: 'text', label: 'Nom' }
+                    - { property: 'prenom', type: 'text', label: 'Prenom' }
+                    - { property: 'email', type: 'email', label: 'Adresse email' }
+                    - { property: 'telephone', type: 'text', label: 'Téléphone' }
+                    - { property: 'adresse', type: 'text', label: 'Adresse' }
+                    - { property: 'photoProfilFile', type: 'vich_image', label: 'Photo de profil' }
+            list:
+                title: "Liste des Clients"
+                fields:
+                    - { property: 'numClient', type: 'text', label: 'Numéro' }
+                    - { property: 'photoProfil', type: 'image', label: 'Profile', base_path: '%app.path.client_upload%' }
+                    - { property: 'prenom', type: 'text', label: 'Prenom' }
+                    - { property: 'email', type: 'email', label: 'Email' }
+                    - { property: 'telephone', type: 'text', label: 'Téléphone' }
+                    - { property: 'adresse', type: 'text', label: 'Adresse' }
+                actions:
+                    - { name: 'show', icon: 'search', label: '' }
+                    - { name: 'edit', icon: 'pencil', label: '' }
+                    - { name: 'delete', icon: 'trash', label: '' }
+
+        Marque:
+            class: App\Entity\Marque
+            new:
+                title: 'Nouvelle Marque'
+                fields:
+                    - { property: 'nom', type: 'text', label: 'Nom' }
+                    - { property: 'siteOfficiel', type: 'text', label: 'Site officiel' }
+                    - { property: 'logoFile', type: 'vich_image', label: 'Logo' }
+            edit:
+                title: "Edition d'une Marque"
+                fields:
+                    - { property: 'nom', type: 'text', label: 'Nom' }
+                    - { property: 'siteOfficiel', type: 'text', label: 'Site officiel' }
+                    - { property: 'logoFile', type: 'vich_image', label: 'Logo' }
+            list:
+                title: "Liste des Voitures"
+                fields:
+                    - { property: 'nom', type: 'text', label: 'Nom' }
+                    - { property: 'logo', type: 'image', label: 'Logo', base_path: '%app.path.marque_upload%' }
+                    - { property: 'siteOfficiel', type: 'text', label: 'Site Web' }
+                actions:
+                    - { name: 'show', icon: 'search', label: '' }
+                    - { name: 'edit', icon: 'pencil', label: '' }
+                    - { name: 'delete', icon: 'trash', label: '' }
+                
+        Voiture:
+            class: App\Entity\Voiture
+            new:
+                title: 'Nouvelle Voiture'
+                fields:
+                    - { property: 'marque', label: 'Marque' }
+                    - { property: 'type', label: 'Type' }
+                    - { property: 'prixUnitaire', label: 'Prix unitaire' }
+                    - { property: 'stock', label: 'Stock initial' }
+                    - { property: 'thumbailFile', type: 'vich_image', label: 'Miniature' }
+            edit:
+                title: "Edition d'une Voiture"
+                fields:
+                    - { property: 'marque', label: 'Site officiel' }
+                    - { property: 'prixUnitaire', label: 'Prix unitaire' }
+                    - { property: 'stock', label: 'Stock initial' }
+                    - { property: 'thumbailFile', type: 'vich_image', label: 'Miniature' }
+            list:
+                title: "Liste des Voitures"
+                fields:
+                    - { property: 'voitureType', label: 'Voiture' }
+                    - { property: 'thumbail', type: 'image', label: 'Miniature', base_path: '%app.path.voiture_upload%' }
+                    - { property: 'prixUnitaire', label: 'Prix unitaire' }
+                    - { property: 'stock', label: 'Stock initial' }
+                actions:
+                    - { name: 'show', icon: 'search', label: '' }
+                    - { name: 'edit', icon: 'pencil', label: '' }
+                    - { name: 'delete', icon: 'trash', label: '' }
+        Vente:
+            class: App\Entity\Vente
+            new:
+                title: 'Nouvelle Vente'
+                fields:
+                    - { property: 'client', label: 'Voiture' }
+                    - { property: 'voiture', label: 'Voiture' }
+                    - { property: 'quantite', label: 'Quantité' }
+            edit:
+                title: "Edition d'Vente"
+            list:
+                title: "Liste des Ventes"
+                fields:
+                    - { property: 'date', label: 'Date' }
+                    - { property: 'client', label: 'Client' }
+                    - { property: 'voiture', label: 'Voiture' }
+                    - { property: 'quantite', label: 'Quantité' }
+                actions:
+                    - { name: 'facture_client', type: 'route', id_vente: vente.id, id_client: 1, icon: 'shopping-cart', label: '' }
+                    - { name: 'show', icon: 'search', label: '' }
+                    - { name: 'edit', icon: 'pencil', label: '' }
+                    - { name: 'delete', icon: 'trash', label: '' }
+        

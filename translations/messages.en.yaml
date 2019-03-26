@@ -1,0 +1,62 @@
+pages:
+  login: 
+    title: Login
+    fields:
+      username: Username
+      password: Password
+      remember: Remember me
+      submit: Login
+
+action:
+  all_tutorials: All courses
+  more_tutorials: More tutorials
+  explore: Get started
+  submit: Submit
+  share_post: Share this post
+  word:
+    by: By
+    at: At
+
+footer:
+  site_copyright: '&copy; Copyright 2018. All Rights Reserved'
+  template_credit: This template is made by 
+  template_owner: 
+    name: Colorlib
+    url: https://colorlib.com
+
+menu:
+  home: Accueil
+  tutorials: Tutorials
+  contact: Contact
+  about: A propos
+
+home:
+  title: Accueil
+  h1: Welcome to XYZ
+  message: Cu his iudico appareat ullamcorper, at mea ignota nostrum. Nonumy argumentum id cum, eos adversarium contentio
+
+contact: 
+  title: Contact me
+  title2: Send a message
+  information: Information
+  message: Vous avez des demandes particuliers ou autres choses à me demander? N'esitez pas
+  btn: Contact me now
+  submit: Send Message
+
+comments:
+  comment: Comment(s)
+  leave_comment: Leave Comment
+  reply: Reply
+  fields:
+    submit: Comment
+    comment: Your comment
+
+form:
+  fields:
+    name: Name
+    email: Email
+    subject: Message object
+    message: Enter your Message
+
+tutoriel:
+  recent: Recent tutorials

@@ -1,0 +1,53 @@
+{% extends '@EasyAdmin/default/layout.html.twig' %}
+{% block main %}
+<div>
+    <div>
+        <section>
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <div class="col-sm-6">
+                        <h3 class="title">Facture
+                            {% if client.nom is defined %}
+                            de {{ client.nom }} {{ client.prenom }}
+                            {% endif %}
+                        </h3>
+                    </div>
+                    {% if ventes is not empty %}
+                        <div class="col-sm-6 text-right">
+                            <a href="{{ path('facture_pdf', {'id_vente': id_vente, 'id': client_id }) }}" target="_blank" class="btn btn-primary">Génerer PDF</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+        <section id="main" class="content tableContent">
+            {% include "facture/ajax.html.twig" %}
+        </section>
+    </div>
+</div>
+<script>
+    var $client = $('#chiffre_affaire_client');
+    $client.prepend('<option value="" selected>Veuiller séléctionner un client</option>')
+    $client.change(function () {
+        // ... retrieve the corresponding form.
+        var $form = $(this).closest('form');
+        // Simulate form data, but only include the selected client value.
+        var data = {};
+        var url = $client.val();
+        data[$client.attr('name')] = $client.val();
+        if(url != '') {
+            console.log(data);
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: data,
+                success: function (Response) {
+                    $('.tableContent').html(Response);
+                }
+            });
+            // window.location.replace(origin + '/chiffre-affaire/' + url);
+        }
+    });
+</script>
+{% endblock %}
